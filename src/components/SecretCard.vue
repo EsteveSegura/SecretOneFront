@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <TextInput :text="'http://80.211.53.183:8080/secret/' + id + '/' + secretKey" />
+    <TextInput :text="'http://80.211.53.183/secret/' + id + '/' + secretKey" />
     <Button style="margin-top:1rem; margin-bottom: -0.8rem;" @buttonClick="deleteSecretClick" isGray="btn" innerText="DELETE SECRET" />
   </div>
 </template>
