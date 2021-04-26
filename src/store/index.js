@@ -17,19 +17,19 @@ export default createStore({
   actions: {
     async createSecret({commit}, secret){
       console.log(secret)
-      const response = await axios.post(`http://localhost:3000/api/v1/secret/`, {...secret})
+      const response = await axios.post(`http://80.211.53.183:3000/api/v1/secret/`, {...secret})
       commit('createSecret',response.data)
     },
     async getSecret({commit}, data){
       console.log(data)
-      const response = await axios.get(`http://localhost:3000/api/v1/secret/${data.id}/${data.secretKey}`)
+      const response = await axios.get(`http://80.211.53.183:3000/api/v1/secret/${data.id}/${data.secretKey}`)
       console.log(response.data)
       commit('getSecret',response.data)
     },
     async deleteSecret({commit},data){
       console.log(commit)
       console.log(data)
-      const response = await axios.delete(`http://localhost:3000/api/v1/secret/${data.id}`,{
+      const response = await axios.delete(`http://80.211.53.183:3000/api/v1/secret/${data.id}`,{
         headers:{
           Authorization: `Bearer ${data.token}`
         }
