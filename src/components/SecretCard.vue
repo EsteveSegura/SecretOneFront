@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <h2>Your secret:</h2>
-    <TextInput :text="'http://80.211.53.183/secret/' + id + '/' + secretKey" />
+    <TextInput :text="'https://keepsecrets.me/secret/' + id + '/' + secretKey" />
     <Button style="margin-top:1rem; margin-bottom: -0.8rem;" @buttonClick="deleteSecretClick" isGray="btn" innerText="DELETE SECRET" />
   </div>
 </template>
