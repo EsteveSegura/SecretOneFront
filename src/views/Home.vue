@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <div
-      class="card"
-      v-if="getSecrets.length == 0"
-      style="transform: translateX(60px);"
-    >
+    <div class="card" v-if="getSecrets.length == 0">
       <div class="card-title horizontal-layout mb-1">
         <h2>Create secret</h2>
       </div>
@@ -41,13 +37,12 @@
       />
     </div>
     <div class="illustration" style="transform: translateX(-35px);">
-      <div class="article" style="transform: translateY(25px);">
+      <div class="article">
         How we keep your secrets safe?
       </div>
-      <IllustrationData style="width:60%; transform: translateY(-10px);" />
+      <IllustrationData class="ill" />
       <Button
-        class="btn-action"
-        style="transform: translateY(-55px);"
+        class="btn-action btn-add"
         @buttonClick="btnAddSecret"
         isGray="btn"
         innerText="Read more..."
@@ -124,6 +119,7 @@ h2 {
   font-family: "Lora", serif;
   font-weight: 700;
   font-size: 40px;
+  transform: translateY(25px);
 }
 
 .illustration {
@@ -182,6 +178,7 @@ h2 {
   padding: 1rem 2.3rem;
   border-radius: 20px;
   width: 17%;
+  transform: translateX(60px);
   background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
 }
 
@@ -200,6 +197,15 @@ h2 {
   align-items: flex-start;
 }
 
+.ill {
+  width: 60%;
+  transform: translateY(-10px);
+}
+
+.btn-add {
+  transform: translateY(-55px);
+}
+
 .horizontal-layout {
   display: flex;
   flex-direction: row;
@@ -207,5 +213,64 @@ h2 {
   justify-content: space-between;
   align-content: stretch;
   align-items: center;
+}
+
+@media (max-width: 1485px) {
+  .card {
+    padding: 1rem 2.3rem;
+    border-radius: 20px;
+    width: 30%;
+    background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
+  }
+
+  .btn-add {
+    transform: translateY(-125px);
+  }
+
+  .ill {
+    width: 100%;
+    transform: translateY(-10px);
+  }
+
+  .article {
+    font-family: "Lora", serif;
+    font-weight: 700;
+    font-size: 40px;
+    text-align: center;
+    transform: translateY(100px);
+  }
+
+  .illustration {
+    width: 30%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .card {
+    padding: 2.5rem 2.3rem;
+    border-radius: 20px;
+    width: 30%;
+    transform: translateX(0px);
+    background: linear-gradient(#3d3b41 80%, #313033 20%) no-repeat;
+    width: 90%;
+  }
+
+  .secrets {
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: center;
+    margin-top: 16%;
+  }
+
+  .illustration {
+    display: none;
+  }
 }
 </style>
