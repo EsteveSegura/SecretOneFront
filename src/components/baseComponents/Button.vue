@@ -66,7 +66,7 @@ export default {
   transition: all 0.3s ease;
 }
 button {
-
+  cursor: pointer;
   appearance: auto;
   text-rendering: auto;
   letter-spacing: normal;
@@ -77,7 +77,6 @@ button {
   display: inline-block;
   text-align: center;
   align-items: flex-start;
-  cursor: default;
   background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
   box-sizing: border-box;
   margin: 0em;

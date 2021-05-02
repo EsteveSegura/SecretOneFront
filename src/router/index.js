@@ -6,11 +6,13 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: { title: 'KeepSecrets',},
     component: Home
   },
   {
     path: '/secret/:id/:secretKey',
     name: 'Secret',
+    meta: { title: 'KeepSecrets',},
     component: Secret
   },
 ]
@@ -20,4 +22,9 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  console.log(from)
+  next()
+})
 export default router

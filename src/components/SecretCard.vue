@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <h2>Your secret:</h2>
     <TextInput :text="'http://80.211.53.183/secret/' + id + '/' + secretKey" />
     <Button style="margin-top:1rem; margin-bottom: -0.8rem;" @buttonClick="deleteSecretClick" isGray="btn" innerText="DELETE SECRET" />
   </div>
@@ -33,6 +34,7 @@ export default {
 
 <style scoped>
 h2 {
+  margin: 0 0 1.5rem 0;
   font-family: "Encode Sans", sans-serif;
   font-weight: 700;
 }
@@ -40,7 +42,7 @@ h2 {
 .content {
   padding: 1rem 2.3rem;
   border-radius: 20px;
-  background: linear-gradient(#3d3b41 56%, #313033 20%) no-repeat;
+  background: linear-gradient(#3d3b41 65%, #313033 20%) no-repeat;
   text-justify: left;
   display: flex;
   flex-direction: column;

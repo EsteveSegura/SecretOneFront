@@ -1,11 +1,19 @@
 <template>
-  <div class="container-header">
+  <!--<div class="container-header">
     <div class="menu">
       <div class="title"><router-link to="/">Keep Secrets</router-link></div>
     </div>
-  </div>
+  </div> -->
   <router-view />
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    title: "Default Title",
+  },
+}
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
@@ -44,5 +52,7 @@ html {
   font-family: "Encode Sans", sans-serif;
   background-color: #1d1d1f;
   color: #fff;
+  margin:0 0;
+
 }
 </style>
