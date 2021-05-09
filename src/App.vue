@@ -5,6 +5,9 @@
     </div>
   </div> -->
   <router-view />
+    <div class="footer">
+    Made with ❤️ & 🔒 by <a href="http://girlazo.com">GiRLaZo</a>
+  </div>
 </template>
 
 <script>
@@ -33,6 +36,15 @@ a:hover {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 2rem;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+  padding: 0.7rem 0rem;
+  font-size: 12px;
 }
 
 .menu {

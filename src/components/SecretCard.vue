@@ -1,8 +1,23 @@
 <template>
   <div class="content">
     <h2>Your secret:</h2>
-    <TextInput :text="'https://keepsecrets.me/secret/' + id + '/' + secretKey" />
-    <Button style="margin-top:1rem; margin-bottom: -0.8rem;" @buttonClick="deleteSecretClick" isGray="btn" innerText="DELETE SECRET" />
+    <TextInput
+      :text="'https://keepsecrets.me/secret/' + id + '/' + secretKey"
+    />
+    <div class="btns">
+      <Button
+        style="margin-top:1rem; margin-bottom: -0.8rem; margin-right: .3rem;"
+        @buttonClick="returnToHome"
+        isGray="gray"
+        innerText="Back"
+      />
+      <Button
+        style="margin-top:1rem; margin-bottom: -0.8rem;"
+        @buttonClick="deleteSecretClick"
+        isGray="btn"
+        innerText="Delete Secret"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,9 +34,13 @@ export default {
     Button,
   },
   methods: {
-    ...mapActions(["deleteSecret"]),
+    ...mapActions(["deleteSecret","cleanSecrets"]),
     deleteSecretClick() {
-      this.deleteSecret({id:this.id , token: this.token});
+      this.deleteSecret({ id: this.id, token: this.token });
+    },
+    returnToHome() {
+      this.cleanSecrets();
+      this.deleteSecret({ id: this.id, token: this.token });
     },
   },
   props: {

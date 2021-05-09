@@ -12,9 +12,13 @@ export default createStore({
   },
   mutations: {
     createSecret: (state, secret) => state.secrets.unshift(secret),
-    getSecret: (state, secret) => state.currentSecret = secret
+    getSecret: (state, secret) => state.currentSecret = secret,
+    cleanSecrets: (state) => state.secrets = []
   },
   actions: {
+    cleanSecrets({commit}){
+      commit('cleanSecrets');
+    },
     async createSecret({commit}, secret){
       console.log(secret)
       const response = await axios.post(`https://keepsecrets.me/api/v1/secret/`, {...secret})
