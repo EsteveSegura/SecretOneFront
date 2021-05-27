@@ -1,56 +1,58 @@
 <template>
-  <div class="container">
-    <div class="card" v-if="getSecrets.length == 0">
-      <div class="card-title horizontal-layout mb-1">
-        <h2>Create secret</h2>
+  <div class="main">
+    <div class="container">
+      <div class="card" v-if="getSecrets.length == 0">
+        <div class="card-title horizontal-layout mb-1">
+          <h2>Create secret</h2>
+        </div>
+        <div class="label-secret mr-min horizontal-layout mb-2">
+          <div class="label graycolor">Secret:</div>
+          <div class="max">{{ lengthRemaining }}</div>
+        </div>
+        <div style="margin-bottom: 1rem;" class="card-secret mb-1">
+          <TextArea @inputText="handleSecret" />
+        </div>
+        <div class="horizontal-layout mr-min mb-2">
+          <div class="label graycolor">Expiration at:</div>
+        </div>
+        <div style="margin-bottom: 2rem;" class="select mb-1">
+          <Select @selected="selectExpire" />
+        </div>
+        <div class="card-actions">
+          <Button class="btn-action" isGray="gray" innerText="Delete" />
+          <Button
+            class="btn-action"
+            @buttonClick="btnAddSecret"
+            isGray="btn"
+            innerText="Share"
+          />
+        </div>
       </div>
-      <div class="label-secret mr-min horizontal-layout mb-2">
-        <div class="label graycolor">Secret:</div>
-        <div class="max">{{ lengthRemaining }}</div>
+      <div class="secrets" v-else>
+        <SecretCard
+          v-for="secret in getSecrets"
+          :key="secret._id"
+          :id="secret._id"
+          :secretKey="secret._secretKey"
+          :token="secret._token"
+        />
       </div>
-      <div style="margin-bottom: 1rem;" class="card-secret mb-1">
-        <TextArea @inputText="handleSecret" />
-      </div>
-      <div class="horizontal-layout mr-min mb-2">
-        <div class="label graycolor">Expiration at:</div>
-      </div>
-      <div style="margin-bottom: 2rem;" class="select mb-1">
-        <Select @selected="selectExpire" />
-      </div>
-      <div class="card-actions">
-        <Button class="btn-action" isGray="gray" innerText="Delete" />
+      <div class="illustration" style="transform: translateX(-35px);">
+        <div class="article">
+          How we keep your secrets safe?
+        </div>
+        <IllustrationData class="ill" />
         <Button
-          class="btn-action"
+          class="btn-action btn-add"
           @buttonClick="btnAddSecret"
           isGray="btn"
-          innerText="Share"
+          innerText="Read more..."
         />
       </div>
     </div>
-    <div class="secrets" v-else>
-      <SecretCard
-        v-for="secret in getSecrets"
-        :key="secret._id"
-        :id="secret._id"
-        :secretKey="secret._secretKey"
-        :token="secret._token"
-      />
+    <div class="footer">
+      Made with ❤️ & 🔒 by <a href="http://girlazo.com">GiRLaZo</a>
     </div>
-    <div class="illustration" style="transform: translateX(-35px);">
-      <div class="article">
-        How we keep your secrets safe?
-      </div>
-      <IllustrationData class="ill" />
-      <Button
-        class="btn-action btn-add"
-        @buttonClick="btnAddSecret"
-        isGray="btn"
-        innerText="Read more..."
-      />
-    </div>
-  </div>
-  <div class="footer">
-    Made with ❤️ & 🔒 by <a href="http://girlazo.com">GiRLaZo</a>
   </div>
 </template>
 
@@ -138,7 +140,7 @@ h2 {
 }
 
 .secrets {
-  width: 24%;
+  width: 100%;
 }
 
 .mr-min {
@@ -164,21 +166,28 @@ h2 {
   margin-bottom: 0.6rem;
 }
 
+.main{
+    width:100vw;
+  height: 90vh;
+  display:flex;
+}
+
 .container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: stretch;
+  margin:  auto;
   align-items: center;
-  margin-top: 6%;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  grid-gap: 10px;
 }
 
 .card {
+  margin: 0 auto;
   padding: 1rem 2.3rem;
   border-radius: 20px;
-  width: 17%;
-  transform: translateX(60px);
+  max-width: 100%;
+  min-width: 60%;
+  max-height: 500px;
   background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
 }
 
@@ -189,6 +198,7 @@ h2 {
 .card-actions {
   margin-top: 3.5rem;
   margin-bottom: 0.6rem;
+  min-width: 250px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -198,7 +208,7 @@ h2 {
 }
 
 .ill {
-  width: 60%;
+  max-width: 550px;
   transform: translateY(-10px);
 }
 
@@ -215,62 +225,75 @@ h2 {
   align-items: center;
 }
 
-@media (max-width: 1485px) {
-  .card {
-    padding: 1rem 2.3rem;
-    border-radius: 20px;
-    width: 30%;
-    background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
-  }
-
-  .btn-add {
-    transform: translateY(-125px);
+@media (max-width: 1300px) {
+  .container {
+    margin: 0 auto;
+    align-items: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
   }
 
   .ill {
-    width: 100%;
     transform: translateY(-10px);
-  }
-
-  .article {
-    font-family: "Lora", serif;
-    font-weight: 700;
-    font-size: 40px;
-    text-align: center;
-    transform: translateY(100px);
+    max-width: 450px;
   }
 
   .illustration {
-    width: 30%;
+    min-width: 690px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    margin: 0 auto;
+    padding: 1rem 2.3rem;
+    border-radius: 20px;
+    max-width: 100%;
+    min-width: 60%;
+    max-height: 500px;
+    background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
   }
 }
 
-@media (max-width: 1100px) {
-  .card {
-    padding: 2.5rem 2.3rem;
-    border-radius: 20px;
-    width: 30%;
-    transform: translateX(0px);
-    background: linear-gradient(#3d3b41 80%, #313033 20%) no-repeat;
-    width: 90%;
-  }
-
-  .secrets {
-    width: 100%;
-  }
-
+@media (max-width: 1140px) {
   .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: stretch;
+    margin: 0 auto;
     align-items: center;
-    margin-top: 16%;
+    max-width: 60%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
   }
 
   .illustration {
     display: none;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .card {
+    margin: 0 auto;
+    padding: 1rem 2.3rem;
+    border-radius: 20px;
+    max-width: 100%;
+    min-width: 60%;
+    max-height: 500px;
+    background: linear-gradient(#3d3b41 84%, #313033 20%) no-repeat;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 0 auto;
+    align-items: center;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+
 }
 </style>
